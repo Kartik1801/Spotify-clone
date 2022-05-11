@@ -1,3 +1,4 @@
+// free to use songs data
 export const artistsData: {
   name: string;
   songs: any[];
