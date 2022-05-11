@@ -49,6 +49,7 @@ const musMenu = [
   },
 ];
 
+// sample data for playlist
 const Playlist = new Array(30).fill(1).map((_, i) => `Playlist-${i + 1}`);
 
 const Sidebar = () => {
