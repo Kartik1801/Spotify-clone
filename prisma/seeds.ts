@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import { artistsData } from "./SongsData";
 // creates a  new prisma client instance
 const prisma = new PrismaClient();
+
+// seeder function
 const run = async () => {
   await Promise.all(
     artistsData.map(async (artist) => {
