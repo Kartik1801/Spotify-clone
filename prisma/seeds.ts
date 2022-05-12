@@ -24,17 +24,37 @@ const run = async () => {
       });
     })
   );
+};
 
-  const salt = bcrypt.genSaltSync();
-  const user = await prisma.user.upsert({
-    where: { user: "user@test.com" },
-    update: {},
-    create: {
-      name: 'user',
-      email: "user@test.com",
-      password: bcrypt.hashSync(salt),
-    }});
+const salt = bcrypt.genSaltSync();
+const user = await prisma.user.upsert({
+  where: { email: "user@test.com" },
+  update: {},
+  create: {
+    name: "user",
+    email: "user@test.com",
+    password: bcrypt.hashSync(salt),
+  },
+});
 
+const songs = await prisma.song.findMany({});
+await Promise.all(
+  new Array(10).fill(1).map(async (_, i) => {
+    return prisma.playlist.create({
+      data: {
+        name: `playlist-no-${i + 1}`,
+        user: {
+          connect: { id: user.id },
+        },
+        song: {
+          connect: songs.map((song) => {
+            return { id: song.id };
+          }),
+        },
+      },
+    });
+  })
+);
 
 run()
   .catch(() => {
