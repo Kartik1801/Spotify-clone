@@ -30,7 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   } else {
     res.status(401);
     res.json({
-      error: "Email or Password is Incorrect",
+      error: "Incorrect Email or Password",
     });
   }
 };
