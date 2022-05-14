@@ -30,7 +30,13 @@ const AuthForm = ({ mode }) => {
         height="100px"
         borderBottom="white solid 1px"
       >
-        <NextImage src="/logo.svg" height={80} width={160} layout="fixed" />
+        <NextImage
+          priority
+          src="/logo.svg"
+          height={80}
+          width={160}
+          layout="fixed"
+        />
       </Flex>
 
       <Flex justify="center" align="center" height="calc(100vh-100px)">
