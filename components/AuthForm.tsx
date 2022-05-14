@@ -15,7 +15,9 @@ const AuthForm: FC<{ mode: string }> = ({ mode }) => {
       <Flex justify="center" align="center" height="100px">
         hello
       </Flex>
-      <Flex justify="center" align="center" height="calc(100vh-100px)" />
+      <Flex justify="center" align="center" height="calc(100vh-100px)">
+        form
+      </Flex>
     </Box>
   );
 };
