@@ -12,7 +12,6 @@ export default validateRoute(
         name: "asc",
       },
     });
-
     res.json(playlists);
   }
 );
