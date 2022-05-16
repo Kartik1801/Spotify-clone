@@ -12,25 +12,25 @@ const GradientLayout = ({
 }) => {
 
     return (
-        <Box height="100%" overflowY="auto" bgGradient={`linear(${color}.500 0%, ${color}.600 15%, ${color}.700 40%, rgba(0,0,0,0.9) 75%)`} >
-            <Flex bg={`${color}.600`} padding="40px" align="end" >
-                <Box padding="20px" >
-                    <Image boxSize="160px" boxShadow="2xl" src={image} borderRadius={roundImage ? "100%" : "3px"} />
+        <Box height="100%" overflowY="auto" bgGradient={`linear(${color}.900 0%, ${color}.800 5%, ${color}.900 20%, rgba(0,0,0,0.9) 45%)`} >
+            <Flex paddingTop="40px" paddingBottom="30px" paddingX="30px" align="end" >
+                <Box paddingY="30px" paddingX="5px" >
+                    <Image boxSize="225px" boxShadow="dark-lg" src={image} borderRadius={roundImage ? "100%" : "3px"} />
                 </Box>
-                <Box padding="20px" color="white" lineHeight="50px">
-                     <Text casing="uppercase" fontSize="x-small" fontWeight="bold">
-                         {subtitle}
+                <Box paddingX="25px" paddingY="20px" color="white" lineHeight="65px">
+                     <Text casing="uppercase" fontSize="12" fontWeight="700">
+                        {subtitle}
                      </Text>
-                     <Text fontSize="6xl" >
+                     <Text fontSize="94" fontWeight="700">
                         {title}
                      </Text>
-                    <Text fontSize="sm">
-                    {description}
+                    <Text marginTop="3px" fontSize="14" fontWeight="600">
+                        {description}
                     </Text>
                 </Box>
             </Flex>
-            <Box padding="50px">
-                    {children}
+            <Box paddingY="10px" paddingX="50px">
+                {children}
             </Box>
         </Box>
     )
