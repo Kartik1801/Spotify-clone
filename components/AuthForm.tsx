@@ -38,20 +38,24 @@ const AuthForm = ({ mode }) => {
           layout="fixed"
         />
       </Flex>
-
-      <Flex justify="center" align="center" height="calc(100vh-100px)">
-        <Box margin="auto" padding="50px" bg="gray.900" borderRadius="6px">
+      <Flex
+        justify="center"
+        align="center"
+        className="fex"
+        height="calc(100vh - 100px)"
+      >
+        <Box padding="50px" bg="gray.900" borderRadius="6px">
           <form onSubmit={handleSubmit}>
             {mode === "signup" ? (
               <>
                 <Input
                   type="text"
-                  placeholder="firstname"
+                  placeholder="Firstname"
                   onChange={(e) => setFirstName(e.target.value)}
                 />
                 <Input
                   type="text"
-                  placeholder="lastname"
+                  placeholder="Lastname"
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </>
