@@ -29,6 +29,9 @@ const GradientLayout = ({
                     </Text>
                 </Box>
             </Flex>
+            <Box padding="50px">
+                    {children}
+            </Box>
         </Box>
     )
 }
