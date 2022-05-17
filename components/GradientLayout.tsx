@@ -10,7 +10,6 @@ const GradientLayout = ({
     description,
     roundImage
 }) => {
-
     return (
         <Box height="100%" overflowY="auto" bgGradient={`linear(${color}.900 0%, ${color}.800 5%, ${color}.900 20%, rgba(0,0,0,0.9) 45%)`} >
             <Flex paddingTop="20px" paddingBottom="30px" paddingX="30px" align="end" >
