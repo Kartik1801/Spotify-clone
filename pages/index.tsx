@@ -29,6 +29,14 @@ const Home = ({artists}) => {
             ))
           }
         </Flex>
+        <Box marginY="10px">
+          <Text fontSize="24px" fontWeight="bold">
+            Top tracks this month
+          </Text>
+          <Text paddingLeft="2px" fontSize="sm" color="gray.500" >
+            Only visible to you.
+          </Text>
+        </Box>
     </Box>
   </GradientLayout>;
 };
