@@ -61,7 +61,7 @@ const Home: FC<HomeProps> = ({ artists, songs }) => {
                     {artist.name}
                   </Text>
                   <Text fontSize="15px" fontWeight="500" color="gray.500">
-                    Artist 
+                    Artist
                   </Text>
                 </Box>
               </Box>
@@ -110,7 +110,7 @@ const Home: FC<HomeProps> = ({ artists, songs }) => {
                     {artists[song.artistId - 1].name}
                   </Text>
                 </Box>
-                
+
                 <Box />
               </Flex>
             ) : null;
