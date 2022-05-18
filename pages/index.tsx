@@ -2,7 +2,13 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/react";
 import { Artist, Song } from "@prisma/client";
 import { FC } from "react";
+import {
+  MdPlayCircleFilled,
+  MdFavorite,
+  MdFavoriteBorder,
+} from "react-icons/md";
 import GradientLayout from "../components/GradientLayout";
+import { useMe } from "../lib/hooks";
 import prisma from "../lib/prisma";
 
 interface HomeProps {
@@ -11,6 +17,7 @@ interface HomeProps {
 }
 
 const Home: FC<HomeProps> = ({ artists, songs }) => {
+  const { user } = useMe();
   return (
     <GradientLayout
       roundImage
@@ -21,7 +28,7 @@ const Home: FC<HomeProps> = ({ artists, songs }) => {
       description="15 Followers &#8226; 3 Playlists"
     >
       <Box paddingLeft="5px" color="white">
-        <Box marginBottom="10px">
+        <Box marginBottom="25px">
           <Text fontSize="24px" fontWeight="bold">
             Top artists this month
           </Text>
@@ -54,14 +61,14 @@ const Home: FC<HomeProps> = ({ artists, songs }) => {
                     {artist.name}
                   </Text>
                   <Text fontSize="15px" fontWeight="500" color="gray.500">
-                    Artist{" "}
+                    Artist 
                   </Text>
                 </Box>
               </Box>
             </Box>
           ))}
         </Flex>
-        <Box marginY="10px">
+        <Box marginY="25px">
           <Text fontSize="24px" fontWeight="bold">
             Top tracks this month
           </Text>
@@ -74,7 +81,41 @@ const Home: FC<HomeProps> = ({ artists, songs }) => {
             Only visible to you.
           </Text>
         </Box>
-        <Flex overflowY="auto">{songs.map((song: Song) => song.name)}</Flex>
+        <Flex overflowY="auto" flexDirection="column">
+          {songs.map((song: Song, index: number) => {
+            return index < 4 ? (
+              <Flex
+                key={song.id}
+                marginY="5px"
+                paddingX="5px"
+                paddingY="10px"
+                alignItems="center"
+                width="100%"
+                height="56px"
+              >
+                <Box padding="10px" verticalAlign="center" marginRight="7px">
+                  <Text fontSize="18px">{index + 1}</Text>
+                </Box>
+                <Box height="56px" paddingRight="5px">
+                  <Image
+                    verticalAlign="center"
+                    height="50px"
+                    src="https://placekitten.com/300/300"
+                    boxShadow="dark-lg"
+                  />
+                </Box>
+                <Box paddingX="15px" padding="5px">
+                  <Text fontSize="16px">{song.name}</Text>
+                  <Text fontSize="14px" color="gray.700">
+                    {artists[song.artistId - 1].name}
+                  </Text>
+                </Box>
+                
+                <Box />
+              </Flex>
+            ) : null;
+          })}
+        </Flex>
       </Box>
     </GradientLayout>
   );
