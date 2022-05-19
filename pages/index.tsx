@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/react";
-import { Artist, Song } from "@prisma/client";
+import { Artist, Song, User } from "@prisma/client";
 import { FC } from "react";
 import {
   MdPlayCircleFilled,
@@ -8,23 +8,23 @@ import {
   MdFavoriteBorder,
 } from "react-icons/md";
 import GradientLayout from "../components/GradientLayout";
-import { useMe } from "../lib/hooks";
+import { validateToken } from "../lib/auth";
 import prisma from "../lib/prisma";
 
 interface HomeProps {
+  user: User;
   artists: Artist[];
   songs: Song[];
 }
 
-const Home: FC<HomeProps> = ({ artists, songs }) => {
-  const { user } = useMe();
+const Home: FC<HomeProps> = ({ user, artists, songs }) => {
   return (
     <GradientLayout
       roundImage
       image="https://i.pinimg.com/originals/16/b8/26/16b826ca6cd8935c59a086bed5419640.jpg"
       subtitle="profile"
       color="red"
-      title="KD"
+      title={`${user?.firstName} ${user?.lastName}`}
       description="15 Followers &#8226; 3 Playlists"
     >
       <Box paddingLeft="5px" color="white">
@@ -104,13 +104,27 @@ const Home: FC<HomeProps> = ({ artists, songs }) => {
                     boxShadow="dark-lg"
                   />
                 </Box>
-                <Box paddingX="15px" padding="5px">
+                <Box paddingX="15px" height="56px" padding="5px">
                   <Text fontSize="16px">{song.name}</Text>
                   <Text fontSize="14px" color="gray.700">
                     {artists[song.artistId - 1].name}
                   </Text>
                 </Box>
-
+                <Box marginLeft="auto" height="56px" padding="5px">
+                  <Text paddingY="10px">{`${Math.round(song.duration / 60)}:${(
+                    song.duration % 60
+                  ).toLocaleString("en-US", {
+                    minimumIntegerDigits: 2,
+                    useGrouping: false,
+                  })}`}</Text>
+                </Box>
+                <Box
+                  height="56px"
+                  marginLeft="15px"
+                  padding="5px"
+                >
+                  <MdPlayCircleFilled color="forestgreen" fontSize="45px" />
+                </Box>
                 <Box />
               </Flex>
             ) : null;
@@ -121,11 +135,16 @@ const Home: FC<HomeProps> = ({ artists, songs }) => {
   );
 };
 
-export const getServerSideProps = async () => {
-  const artists: Artist[] = await prisma.artist.findMany({});
-  const songs: Song[] = await prisma.song.findMany({});
+export const getServerSideProps = async ({ req }) => {
+  const { id } = validateToken(req.cookies.SPOTIFY_CLONE_ACCESS_TOKEN);
+  const [user, artists, songs] = await Promise.all([
+    prisma.user.findUnique({ where: { id: +id } }),
+    prisma.artist.findMany({}),
+    prisma.song.findMany({}),
+  ]);
   return {
     props: {
+      user,
       artists,
       songs,
     },
