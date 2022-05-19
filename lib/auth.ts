@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "./prisma";
@@ -31,7 +32,7 @@ export const validateRoute = (handler) => {
   };
 };
 
-export const validateToken = (token) => {
-  const user = jwt.verify(token, "secret");
+export const validateToken = (token): User => {
+  const user: User = jwt.verify(token, "secret");
   return user;
 };
