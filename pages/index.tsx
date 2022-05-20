@@ -43,7 +43,12 @@ const Home: FC<HomeProps> = ({ user, artists, songs }) => {
         </Box>
         <Flex overflowX="auto">
           {artists.map((artist) => (
-            <Box padding="10px" width="192.8px" height="270.8px">
+            <Box
+              padding="10px"
+              key={artist.id}
+              width="192.8px"
+              height="270.8px"
+            >
               <Box
                 bg="#212121"
                 width="100%"
@@ -118,11 +123,7 @@ const Home: FC<HomeProps> = ({ user, artists, songs }) => {
                     useGrouping: false,
                   })}`}</Text>
                 </Box>
-                <Box
-                  height="56px"
-                  marginLeft="15px"
-                  padding="5px"
-                >
+                <Box height="56px" marginLeft="15px" padding="5px">
                   <MdPlayCircleFilled color="forestgreen" fontSize="45px" />
                 </Box>
                 <Box />
