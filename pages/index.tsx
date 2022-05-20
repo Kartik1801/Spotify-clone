@@ -27,7 +27,7 @@ const Home: FC<HomeProps> = ({ user, artists, songs }) => {
       title={`${user?.firstName} ${user?.lastName}`}
       description="15 Followers &#8226; 3 Playlists"
     >
-      <Box paddingLeft="5px" color="white">
+      <Box bgColor="rgba(0,0,0,0.1)" padding="25px" color="white">
         <Box marginBottom="25px">
           <Text fontSize="24px" fontWeight="bold">
             Top artists this month
