@@ -53,7 +53,7 @@ const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
             align="center"
             fontSize="40px"
           >
-            {playlist.userId == user.id ? (
+            {playlist.userId === user.id ? (
               <MdFavorite color="lightgreen" />
             ) : (
               <MdFavoriteBorder />
