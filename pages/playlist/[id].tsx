@@ -31,11 +31,10 @@ const getBGColor = (id) => {
 
 const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
   const color = getBGColor(playlist.id);
-
   return (
     <GradientLayout
       color={color}
-      title={playlist.name}
+      title={playlist.name || "No Name"}
       description="Description"
       roundImage={false}
       image="https://placekitten.com/300/300"
@@ -48,10 +47,10 @@ const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
           </Text>
           <Text
             height="60px"
-            paddingY="15px"
+            paddingY="20px"
             paddingX="15px"
             align="center"
-            fontSize="40px"
+            fontSize="30px"
           >
             {playlist.userId === user.id ? (
               <MdFavorite color="lightgreen" />
@@ -69,7 +68,7 @@ export const getServerSideProps = async ({ query, req }) => {
   const { id } = validateToken(req.cookies.SPOTIFY_CLONE_ACCESS_TOKEN);
   const [user, playlist] = await Promise.all([
     prisma.user.findUnique({ where: { id: +id } }),
-    prisma.playlist.findMany({
+    prisma.playlist.findFirst({
       where: {
         id: +query.id,
         userId: id,
@@ -88,8 +87,6 @@ export const getServerSideProps = async ({ query, req }) => {
       },
     }),
   ]);
-
-  console.log(user);
   return {
     props: { playlist, user },
   };
