@@ -2,6 +2,8 @@ import { Table, Thead, Tbody, Td, Tr, Th, IconButton } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/layout";
 import { BsPlayFill } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import formatDuration from "format-duration";
+import { formatDate, formatTime } from "../lib/formatter";
 
 const SongTable = ({ songs }) => {
   return (
@@ -31,8 +33,8 @@ const SongTable = ({ songs }) => {
             >
               <Td>{i + 1}</Td>
               <Td>{song.name}</Td>
-              <Td>{`${song.createdAt}`}</Td>
-              <Td>{`${song.duration}`}</Td>
+              <Td>{formatDate(song.createdAt)}</Td>
+              <Td>{formatTime(song.duration)}</Td>
             </Tr>
           ))}
         </Tbody>

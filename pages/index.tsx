@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 import GradientLayout from "../components/GradientLayout";
 import { validateToken } from "../lib/auth";
+import { formatTime } from "../lib/formatter";
 import prisma from "../lib/prisma";
 
 interface HomeProps {
@@ -57,7 +58,7 @@ const Home: FC<HomeProps> = ({ user, artists, songs }) => {
                 padding="15px"
               >
                 <Image
-                  src="https://placekitten.com/300/300"
+                  src={`https://picsum.photos/400?random=${artist.id}`}
                   boxShadow="dark-lg"
                   borderRadius="100%"
                 />
@@ -91,6 +92,13 @@ const Home: FC<HomeProps> = ({ user, artists, songs }) => {
             return index < 4 ? (
               <Flex
                 key={song.id}
+                sx={{
+                  transition: "all .3s",
+                  "&:hover": {
+                    bg: "rgba(255,255,255,0.1)",
+                  },
+                }}
+                cursor="default"
                 marginY="5px"
                 paddingX="5px"
                 paddingY="10px"
@@ -104,8 +112,9 @@ const Home: FC<HomeProps> = ({ user, artists, songs }) => {
                 <Box height="56px" paddingRight="5px">
                   <Image
                     verticalAlign="center"
-                    height="50px"
-                    src="https://placekitten.com/300/300"
+                    marginY="6px"
+                    height="44px"
+                    src={`https://picsum.photos/400?random=${song.id}`}
                     boxShadow="dark-lg"
                   />
                 </Box>
@@ -116,12 +125,7 @@ const Home: FC<HomeProps> = ({ user, artists, songs }) => {
                   </Text>
                 </Box>
                 <Box marginLeft="auto" height="56px" padding="5px">
-                  <Text paddingY="10px">{`${Math.round(song.duration / 60)}:${(
-                    song.duration % 60
-                  ).toLocaleString("en-US", {
-                    minimumIntegerDigits: 2,
-                    useGrouping: false,
-                  })}`}</Text>
+                  <Text paddingY="10px">{formatTime(song.duration)}</Text>
                 </Box>
                 <Box height="56px" marginLeft="15px" padding="5px">
                   <MdPlayCircleFilled color="forestgreen" fontSize="45px" />
