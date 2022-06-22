@@ -60,7 +60,7 @@ const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
             )}
           </Text>
         </Flex>
-        <SongTable />
+        <SongTable songs={playlist.songs} />
       </Box>
     </GradientLayout>
   );
