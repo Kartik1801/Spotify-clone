@@ -117,7 +117,7 @@ const Sidebar = () => {
         <Divider marginTop="15px" color="gray.800" />
         <Box height="50%" overflowY="auto" paddingY="20px">
           <List spacing={2}>
-            {playlists.map((playlist) => (
+            {playlists?.map((playlist) => (
               <ListItem paddingX="20px" key={playlist.id}>
                 <LinkBox>
                   <NextLink
