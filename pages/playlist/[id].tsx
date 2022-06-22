@@ -7,6 +7,7 @@ import {
   MdFavoriteBorder,
 } from "react-icons/md";
 import GradientLayout from "../../components/GradientLayout";
+import SongTable from "../../components/SongsTable";
 import { validateToken } from "../../lib/auth";
 import prisma from "../../lib/prisma";
 
@@ -35,9 +36,9 @@ const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
     <GradientLayout
       color={color}
       title={playlist.name || "No Name"}
-      description="Description"
+      description={`   ${playlist.songs.length} songs`}
       roundImage={false}
-      image="https://placekitten.com/300/300"
+      image={`https://picsum.photos/400?random=${playlist.id}`}
       subtitle="playlist"
     >
       <Box width="100%" height="100%" paddingX="15px" bgColor="rgba(0,0,0,0.1)">
@@ -59,6 +60,7 @@ const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
             )}
           </Text>
         </Flex>
+        <SongTable />
       </Box>
     </GradientLayout>
   );

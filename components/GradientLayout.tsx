@@ -43,7 +43,7 @@ const GradientLayout = ({
             <Text fontSize="50" paddingX="2px" fontWeight="700">
               {title}
             </Text>
-            <Text marginTop="4px" fontSize="14" fontWeight="600">
+            <Text marginTop="4px" fontSize="12" fontWeight="500">
               {description}
             </Text>
           </Box>
