@@ -80,7 +80,14 @@ const Sidebar = () => {
               <ListItem paddingX="20px" fontSize="16px" key={menu.name}>
                 <LinkBox>
                   <NextLink href={menu.route} passHref>
-                    <LinkOverlay>
+                    <LinkOverlay sx={{
+                      transition: "all .3s",
+                      "&:hover": {
+                        color: "rgb(255,255,255)",
+                        fontSize: "17px"
+                      },
+                    }}
+                    >
                       <ListIcon
                         as={menu.icon}
                         color="white"
@@ -100,7 +107,14 @@ const Sidebar = () => {
               <ListItem paddingX="20px" fontSize="16px" key={menu.name}>
                 <LinkBox>
                   <NextLink href={menu.route} passHref>
-                    <LinkOverlay>
+                    <LinkOverlay
+                      sx={{
+                        transition: "all .3s",
+                        "&:hover": {
+                          color: "rgb(255,255,255)",
+                          fontSize: "17px"
+                        },
+                      }}>
                       <ListIcon
                         as={menu.icon}
                         color="white"
@@ -117,23 +131,32 @@ const Sidebar = () => {
         <Divider marginTop="15px" color="gray.800" />
         <Box height="50%" overflowY="auto" paddingY="20px">
           <List spacing={2}>
-            {playlists?.map((playlist) => (
-              <ListItem paddingX="20px" key={playlist.id}>
-                <LinkBox>
-                  <NextLink
-                    href={{
-                      pathname: "/playlist/[id]",
-                      query: {
-                        id: playlist.id,
-                      },
-                    }}
-                    passHref
-                  >
-                    <LinkOverlay>{playlist.name}</LinkOverlay>
-                  </NextLink>
-                </LinkBox>
-              </ListItem>
-            ))}
+            {
+              playlists?.error ? null : playlists.map((playlist) => (
+                <ListItem paddingX="20px" key={playlist.id}>
+                  <LinkBox>
+                    <NextLink
+                      href={{
+                        pathname: "/playlist/[id]",
+                        query: {
+                          id: playlist.id,
+                        },
+                      }}
+                      passHref
+                    >
+                      <LinkOverlay sx={{
+                        transition: "all .3s",
+                        "&:hover": {
+                          color: "rgb(255,255,255)",
+                          fontSize: "17px"
+                        },
+                      }}
+                      >{playlist.name}</LinkOverlay>
+                    </NextLink>
+                  </LinkBox>
+                </ListItem>
+              ))
+            }
           </List>
         </Box>
       </Box>

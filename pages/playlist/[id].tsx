@@ -67,7 +67,21 @@ const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
 };
 
 export const getServerSideProps = async ({ query, req }) => {
-  const { id } = validateToken(req.cookies.SPOTIFY_CLONE_ACCESS_TOKEN);
+  let User
+  try {
+
+    User = validateToken(req.cookies.SPOTIFY_CLONE_ACCESS_TOKEN);
+
+  }
+  catch (e) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/signin"
+      }
+    }
+  }
+  const { id } = User;
   const [user, playlist] = await Promise.all([
     prisma.user.findUnique({ where: { id: +id } }),
     prisma.playlist.findFirst({
