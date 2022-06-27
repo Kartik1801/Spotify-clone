@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/layout";
-import { Playlist as PlaylistModel, User } from "@prisma/client";
+import { Playlist as PlaylistModel, User, Song as SongModel } from "@prisma/client";
 import { FC } from "react";
 import {
   MdPlayCircleFilled,
@@ -11,8 +11,12 @@ import SongTable from "../../components/SongsTable";
 import { validateToken } from "../../lib/auth";
 import prisma from "../../lib/prisma";
 
+interface pl extends PlaylistModel {
+  songs: [SongModel]
+}
+
 interface IPlaylist {
-  playlist: PlaylistModel;
+  playlist: pl;
   user: User;
 }
 
@@ -32,6 +36,7 @@ const getBGColor = (id) => {
 
 const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
   const color = getBGColor(playlist.id);
+
   return (
     <GradientLayout
       color={color}
