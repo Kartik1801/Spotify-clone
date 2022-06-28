@@ -24,7 +24,7 @@ import { useStoreActions } from "easy-peasy";
 
 const Player = () => {
     return (
-        <Box>
+        <Box width="100%">
             <Box>
                 {/* <ReactHowler /> */}
             </Box>
@@ -38,7 +38,7 @@ const Player = () => {
                     <IconButton aria-label="repeat" fontSize="16px" icon={< MdOutlineRepeat />} outline="none" variant="link" />
                 </ButtonGroup>
             </Center>
-            <Box color="gray.600">
+            <Box color="gray.600" >
                 <Flex justify="center" align="center">
                     <Box width="10%">
                         <Text fontSize="xs">1:21</Text>
@@ -46,13 +46,13 @@ const Player = () => {
                     <Box width="80%">
                         <RangeSlider aria-label={['min', 'max']} step={"0.1"} min={0} max={321}>
                             <RangeSliderTrack bg="gray.800">
-                            <RangeSliderFilledTrack bg="gray.600" ></RangeSliderFilledTrack> 
+                                <RangeSliderFilledTrack bg="gray.600" ></RangeSliderFilledTrack>
                             </RangeSliderTrack>
                             <RangeSliderThumb index={0}></RangeSliderThumb>
                         </RangeSlider>
                     </Box>
-                    <Box width="10%">
-                        <Text fontSize="xs">1:21</Text>
+                    <Box width="10%" textAlign="right">
+                        <Text fontSize="xs" >3:21</Text>
                     </Box>
                 </Flex>
             </Box>
