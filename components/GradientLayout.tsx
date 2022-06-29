@@ -61,7 +61,7 @@ const GradientLayout = ({
           </Box>
         )}
       </Flex>
-      <Box paddingY="10px" paddingX="0px">
+      <Box paddingTop="10px" paddingX="0px">
         {children}
       </Box>
     </Box>
