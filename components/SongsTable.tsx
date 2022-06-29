@@ -7,7 +7,7 @@ import { formatDate, formatTime } from "../lib/formatter";
 
 const SongTable = ({ songs }) => {
   return (
-    <Box padding="10px" margin="20px">
+    <Box padding="10px" marginTop="20px">
       <Table color="white" variant="unstyled">
         <Thead borderBottom="1px solid" borderColor="rgba(255,255,255,0.2)">
           <Tr>
