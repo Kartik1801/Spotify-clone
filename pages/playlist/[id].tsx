@@ -1,5 +1,9 @@
 import { Box, Flex, Text } from "@chakra-ui/layout";
-import { Playlist as PlaylistModel, User, Song as SongModel } from "@prisma/client";
+import {
+  Playlist as PlaylistModel,
+  User,
+  Song as SongModel,
+} from "@prisma/client";
 import { FC } from "react";
 import {
   MdPlayCircleFilled,
@@ -12,7 +16,7 @@ import { validateToken } from "../../lib/auth";
 import prisma from "../../lib/prisma";
 
 interface pl extends PlaylistModel {
-  songs: [SongModel]
+  songs: [SongModel];
 }
 
 interface IPlaylist {
@@ -72,19 +76,16 @@ const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
 };
 
 export const getServerSideProps = async ({ query, req }) => {
-  let User
+  let User;
   try {
-
     User = validateToken(req.cookies.SPOTIFY_CLONE_ACCESS_TOKEN);
-
-  }
-  catch (e) {
+  } catch (e) {
     return {
       redirect: {
         permanent: false,
-        destination: "/signin"
-      }
-    }
+        destination: "/signin",
+      },
+    };
   }
   const { id } = User;
   const [user, playlist] = await Promise.all([
