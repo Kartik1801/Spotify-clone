@@ -61,7 +61,7 @@ const Player = ({ songs, activeSong }) => {
             fontSize="20px"
             icon={<MdSkipPrevious />}
             outline="none"
-            variant="link"  
+            variant="link"
           />
           {playing ? (
             <IconButton
