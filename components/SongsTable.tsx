@@ -11,28 +11,17 @@ import {
 import { Box } from "@chakra-ui/layout";
 import { MdPlayArrow, MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { useStoreActions } from "easy-peasy";
 import { formatDate, formatTime } from "../lib/formatter";
 
-/* <Flex padding="10px">
-          <Text height="65px" fontSize="65px" color="lightgreen">
-            <MdPlayCircleFilled />
-          </Text>
-          <Text
-            height="60px"
-            paddingY="20px"
-            paddingX="15px"
-            align="center"
-            fontSize="30px"
-          >
-            {playlist.userId === user.id ? (
-              <MdFavorite color="lightgreen" />
-            ) : (
-              <MdFavoriteBorder />
-            )}
-          </Text>
-        </Flex> */
-
 const SongTable = ({ songs, playlist, user }) => {
+  const playSongs = useStoreActions((store: any) => store.changeActiveSongs);
+  const setActiveSong = useStoreActions((store: any) => store.changeActiveSong);
+
+  const handlePlay = (activeSong?) => {
+    setActiveSong(activeSong || songs[0]);
+    playSongs(songs);
+  };
   return (
     <Box width="100%" height="100%" paddingY="15px" bgColor="rgba(0,0,0,0.1)">
       <Flex padding="10px" align="center" height="60px">
@@ -43,6 +32,7 @@ const SongTable = ({ songs, playlist, user }) => {
             bg="#1db954"
             height="56px"
             width="56px"
+            onClick={() => handlePlay()}
             sx={{
               transition: "all .3s",
               "&:hover": {
@@ -100,7 +90,8 @@ const SongTable = ({ songs, playlist, user }) => {
                     bg: "rgba(255,255,255,0.1)",
                   },
                 }}
-                cursor="default"
+                onClick = {()=> handlePlay(song)}
+                cursor="pointer"
               >
                 <Td>{i + 1}</Td>
                 <Td>{song.name}</Td>
