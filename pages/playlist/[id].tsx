@@ -1,15 +1,9 @@
-import { Box, Flex, Text } from "@chakra-ui/layout";
 import {
   Playlist as PlaylistModel,
   User,
   Song as SongModel,
 } from "@prisma/client";
 import { FC } from "react";
-import {
-  MdPlayCircleFilled,
-  MdFavorite,
-  MdFavoriteBorder,
-} from "react-icons/md";
 import GradientLayout from "../../components/GradientLayout";
 import SongTable from "../../components/SongsTable";
 import { validateToken } from "../../lib/auth";
@@ -50,27 +44,7 @@ const Playlist: FC<IPlaylist> = ({ playlist, user }) => {
       image={`https://picsum.photos/400?random=${playlist.id}`}
       subtitle="playlist"
     >
-      <Box width="100%" height="100%" paddingX="15px" bgColor="rgba(0,0,0,0.1)">
-        <Flex padding="10px">
-          <Text height="65px" fontSize="65px" color="lightgreen">
-            <MdPlayCircleFilled />
-          </Text>
-          <Text
-            height="60px"
-            paddingY="20px"
-            paddingX="15px"
-            align="center"
-            fontSize="30px"
-          >
-            {playlist.userId === user.id ? (
-              <MdFavorite color="lightgreen" />
-            ) : (
-              <MdFavoriteBorder />
-            )}
-          </Text>
-        </Flex>
-        <SongTable songs={playlist.songs} />
-      </Box>
+      <SongTable user={user} playlist={playlist} songs={playlist.songs} />
     </GradientLayout>
   );
 };
