@@ -34,10 +34,10 @@ const Player = ({ songs, activeSong }) => {
     setPlaying(value);
   };
   const toogleShuffleState = () => {
-    setShuffle(!shuffle);
+    setShuffle((state) => !state);
   };
   const toogleRepeatState = () => {
-    setRepeat(!repeat);
+    setRepeat((state) => !state);
   };
 
   return (
