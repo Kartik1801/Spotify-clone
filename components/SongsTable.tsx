@@ -90,7 +90,7 @@ const SongTable = ({ songs, playlist, user }) => {
                     bg: "rgba(255,255,255,0.1)",
                   },
                 }}
-                onClick = {()=> handlePlay(song)}
+                onClick={() => handlePlay(song)}
                 cursor="pointer"
               >
                 <Td>{i + 1}</Td>
